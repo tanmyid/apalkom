@@ -207,6 +207,7 @@ if (isset($_POST['hapusLab'])) {
 // end laboratorium function
 
 // aset function
+$count_data_aset = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as count_DA FROM aset;"))['count_DA'];
 /// generate kode aset
 $get_kode = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as KD FROM aset;"))['KD'];
 /// kategori

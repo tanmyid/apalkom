@@ -118,7 +118,7 @@
                     echo '                        <i class="nav-icon fas fa-box-open"></i>';
                     echo '                        <p>';
                     echo '                            Nama Aset';
-                    echo '                            <span class="badge badge-info right">' . $count_nama_aset . '</span>';
+                    echo '                            <span class="badge badge-secondary right">' . $count_nama_aset . '</span>';
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
@@ -126,7 +126,7 @@
                     echo '                    <a href="' . $baseURL . '/data_aset" class="nav-link">';
                     echo '                        <i class="nav-icon fas fa-boxes"></i>';
                     echo '                        <p>';
-                    echo '                            Data Aset';
+                    echo '                            Data Aset <span class="badge badge-success right">' . $count_data_aset . '</span>';
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
@@ -180,7 +180,7 @@
         <!-- /.sidebar-menu -->
     </div>
     <div class="sidebar-custom mt-2 text-center">
-        <span class="text-md text-white">Login as : <?= $_SESSION['nama']; ?></span>
+        <span class="text-md text-white">Login as : <?= strtoupper($_SESSION['level']); ?></span>
 
     </div>
     <!-- /.sidebar -->
