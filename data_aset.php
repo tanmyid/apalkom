@@ -144,11 +144,11 @@ include 'layouts/sidebar.php';
 
                                         <td class="text-center"><?php
                                                                 if ($status == 'baik') {
-                                                                    echo '<span class="badge badge-success">Baik</span>';
+                                                                    echo '<h5><span class="badge badge-success">Baik</span></h5>';
                                                                 } elseif ($status == 'perbaikan') {
-                                                                    echo '<span class="badge badge-warning">Perbaikan</span>';
+                                                                    echo '<h5><span class="badge badge-warning">Perbaikan</span></h5>';
                                                                 } else {
-                                                                    echo '<span class="badge badge-danger">Rusak</span>';
+                                                                    echo '<h5><span class="badge badge-danger">Rusak</span></h5>';
                                                                 }
                                                                 ?></td>
 

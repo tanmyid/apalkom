@@ -215,7 +215,7 @@ $non_elektronik = "AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-N";
 /// get data aset
 $get_data_aset = mysqli_query($koneksi,     "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.tahun_pengadaan, aset.status_aset, aset.catatan, laboratorium.id_laboratorium FROM aset 
                                             INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
-                                            INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium");
+                                            INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium ORDER BY `aset`.`kode_aset` ASC");
 /// tambah data aset
 if (isset($_POST['tambahDataAset'])) {
     $kode_aset = $_POST['kode_aset'];
