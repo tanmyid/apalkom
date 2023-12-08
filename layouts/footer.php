@@ -1,0 +1,68 @@
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 0.1
+    </div>
+    <strong>Copyright &copy; <?= date('Y'); ?> <a href="https://github.com/tanmyid/" target="_blank">Mohammad Tanio</a>.</strong> Made with a lot of <i class="fas fa-coffee"></i>
+</footer>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="<?= $baseURL; ?>/assets/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= $baseURL; ?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="<?= $baseURL; ?>/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="<?= $baseURL; ?>/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/jszip/jszip.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= $baseURL; ?>/assets/js/adminlte.min.js"></script>
+<!-- Select2 -->
+<script src="<?= $baseURL; ?>/assets/plugins/select2/js/select2.full.min.js"></script>
+</body>
+<script>
+    $(function() {
+        $("#kelolaUser2").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#kelolaUser_wrapper .col-md-6:eq(0)');
+        $('#formatDataTables').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "lengthMenu": [5, 10, 20, 50, 100, 200, 500],
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        });
+    });
+</script>
+
+</html>
