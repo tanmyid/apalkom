@@ -143,64 +143,11 @@ include 'layouts/sidebar.php';
                                                                 ?></td>
                                         <td><?= $tgl_masuk; ?></td>
                                         <td><?= $tgl_keluar; ?></td>
-                                        <td class=" text-center">
-                                            <button class="btn btn-info" data-toggle="modal" data-target="#detailNamaAset_<?= $kode_aset; ?>"><i class="fas fa-info"></i> Detail</button>
+                                        <td class="text-center">
                                             <button class="btn btn-secondary" data-toggle="modal" data-target="#editDataAset_<?= $kode_aset; ?>"><i class="fas fa-edit"></i> Edit</button>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#hapusDataAset_<?= $kode_aset; ?>"><i class="fas fa-trash"></i> Hapus</button>
                                         </td>
                                     </tr>
-                                    <!-- Modal Detail Aset -->
-                                    <div class="modal fade" id="detailNamaAset_<?= $kode_aset; ?>">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Detail Aset Lab Komputer</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <input type="hidden" class="form-control" value="<?= $kode_aset; ?>" name="kode_aset">
-                                                    <div class="row">
-                                                        <div class="form-group col">
-                                                            <label>Kode Aset : </label>
-                                                            <span><?= $kode_aset; ?></span>
-                                                        </div>
-                                                        <div class="form-group col">
-                                                            <label>Nama Aset : </label>
-                                                            <span><?= $nama; ?></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="form-group col">
-                                                            <label>Kategori Aset : </label>
-                                                            <span><?= $kategori; ?></span>
-                                                        </div>
-                                                        <div class="form-group col">
-                                                            <label>Tahun Pegadaan Aset : </label>
-                                                            <span><?= $tahun_pengadaan; ?></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="form-group col">
-                                                            <label>Lokasi Aset : </label>
-                                                            <span><?= $lokasi; ?></span>
-                                                        </div>
-                                                        <div class="form-group col">
-                                                            <label>Status Aset : </label>
-                                                            <span><?= $status; ?></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Catatan Aset : </label>
-                                                        <span><?= $catatan; ?></span>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Modal Detail Aset -->
                                     <!-- Modal Edit Aset -->
                                     <div class="modal fade" id="editDataAset_<?= $kode_aset; ?>">
                                         <div class="modal-dialog">
