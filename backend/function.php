@@ -214,10 +214,12 @@ $get_kode = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) a
 $elektronik = "AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-E";
 $non_elektronik = "AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-N";
 /// get data aset
-$get_data_aset = mysqli_query($koneksi,     
-"SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.tahun_pengadaan, aset.status_aset, aset.catatan, laboratorium.id_laboratorium FROM aset 
+$get_data_aset = mysqli_query(
+    $koneksi,
+    "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.tahun_pengadaan, aset.status_aset, aset.catatan, laboratorium.id_laboratorium FROM aset 
  INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
- INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium ORDER BY `aset`.`kode_aset` ASC");
+ INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium ORDER BY `aset`.`kode_aset` ASC"
+);
 /// tambah data aset
 if (isset($_POST['tambahDataAset'])) {
     $kode_aset = $_POST['kode_aset'];
@@ -277,3 +279,34 @@ if (isset($_POST['hapusDataAset'])) {
     }
     echo '</script>';
 }
+/// end data aset function
+
+/// kondisi aset function
+$get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
+INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
+INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='perbaikan' ORDER BY aset.kode_aset ASC");
+/// tambah aset reparasi
+if (isset($_POST['tambahReparasiAset'])) {
+    $kode_aset = $_POST['mySelect'];
+    $nama = $_POST['selectedIdNamset'];
+    $kategori = $_POST['selectedKategori'];
+    $status_reparasi = $_POST['status_reparasi'];
+    $tgl_masuk = $_POST['tgl_masuk'];
+    $tgl_keluar = $_POST['tgl_keluar'];
+
+    $prc = mysqli_query($koneksi,   "INSERT INTO teknisi (id_reparasi, kode_aset, nama , kategori, status_reparasi, tgl_masuk, tgl_keluar) 
+                                    VALUES ('', '$kode_aset', '$nama', '$kategori', '$status_reparasi', '$tgl_masuk', '$tgl_keluar')");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/reparasi";';
+    } else {
+        echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/reparasi";';
+    }
+    echo '</script>';
+}
+
+/// get data reparasi
+$get_data_reparasi = mysqli_query($koneksi, "SELECT teknisi.id_reparasi, teknisi.kode_aset, nama_aset.nama, teknisi.kategori, teknisi.status_reparasi, teknisi.tgl_masuk, teknisi.tgl_keluar
+FROM teknisi
+INNER JOIN nama_aset ON teknisi.nama = nama_aset.id_nama_aset");

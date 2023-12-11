@@ -36,6 +36,10 @@ if (isset($_SESSION['login']) == 'true') {
     <link rel="stylesheet" href="<?= $baseURL; ?>/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= $baseURL; ?>/assets/css/adminlte.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="<?= $baseURL; ?>/assets/plugins/daterangepicker/daterangepicker.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="<?= $baseURL; ?>/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

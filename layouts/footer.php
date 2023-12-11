@@ -37,6 +37,13 @@
 <script src="<?= $baseURL; ?>/assets/js/adminlte.min.js"></script>
 <!-- Select2 -->
 <script src="<?= $baseURL; ?>/assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- date-range-picker -->
+<script src="<?= $baseURL; ?>/assets/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- InputMask -->
+<script src="<?= $baseURL; ?>/assets/plugins/moment/moment.min.js"></script>
+<script src="<?= $baseURL; ?>/assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?= $baseURL; ?>/assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 </body>
 <script>
     $(function() {
@@ -62,6 +69,15 @@
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         });
+
+        //Date picker
+        $('#tgl_masuk').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+        $('#tgl_keluar').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
+
     });
 </script>
 
