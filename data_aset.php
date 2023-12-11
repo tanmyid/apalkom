@@ -44,7 +44,7 @@ include 'layouts/sidebar.php';
                                                 </div>
                                                 <div class="form-group col">
                                                     <label for="">Kategori Aset</label>
-                                                    <select class="form-control" name="mySelect" id="mySelect" onchange="getSelectedOption()">
+                                                    <select class="form-control" name="mySelect" id="mySelect" required onchange="getSelectedOption()">
                                                         <option selected value="0">Pilih Kategori</option>
                                                         <option value="<?= $elektronik; ?>">Elektronik</option>
                                                         <option value="<?= $non_elektronik; ?>">Non Elektronik</option>
