@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 05:28 PM
+-- Generation Time: Dec 08, 2023 at 04:59 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -156,21 +156,13 @@ INSERT INTO `pengguna` (`id_pengguna`, `username`, `password`, `nama`, `level`) 
 
 CREATE TABLE `teknisi` (
   `id_reparasi` int(11) NOT NULL,
-  `kode_aset` varchar(100) NOT NULL,
-  `nama` int(11) NOT NULL,
   `kategori` enum('Elektronik','Non Elektronik') NOT NULL,
+  `nama` int(11) NOT NULL,
+  `kode_aset` varchar(100) NOT NULL,
   `status_reparasi` enum('selesai','perbaikan','rusak') NOT NULL,
   `tgl_masuk` date NOT NULL,
   `tgl_keluar` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `teknisi`
---
-
-INSERT INTO `teknisi` (`id_reparasi`, `kode_aset`, `nama`, `kategori`, `status_reparasi`, `tgl_masuk`, `tgl_keluar`) VALUES
-(1, 'AST-0002-N', 4, 'Non Elektronik', 'perbaikan', '2023-12-12', '2023-12-14'),
-(2, 'AST-0003-E', 5, 'Elektronik', 'perbaikan', '2023-12-01', '2023-12-28');
 
 --
 -- Indexes for dumped tables
@@ -265,7 +257,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `teknisi`
 --
 ALTER TABLE `teknisi`
-  MODIFY `id_reparasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_reparasi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
