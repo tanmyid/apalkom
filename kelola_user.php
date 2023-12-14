@@ -106,8 +106,8 @@ if ($_SESSION['level'] !== 'kalab') {
                                                 echo 'Kepala Laboratorium';
                                             } else echo 'Laboran'; ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_pengguna; ?>">Edit</button>
-                                            <button class="btn btn-info" data-toggle="modal" data-target="#hapusUser<?= $id_pengguna; ?>">Hapus</button>
+                                            <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_pengguna; ?>"><i class="fas fa-edit"></i> Edit</button>
+                                            <button class="btn btn-info" data-toggle="modal" data-target="#hapusUser<?= $id_pengguna; ?>"><i class="fas fa-trash"></i> Hapus</button>
                                         </td>
                                     </tr>
                                     <!-- Modal Edit User -->

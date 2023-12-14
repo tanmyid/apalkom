@@ -163,6 +163,14 @@
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
+                    echo '<li class="nav-item">';
+                    echo '                    <a href="' . $baseURL . '/laporan" class="nav-link">';
+                    echo '                        <i class="nav-icon far fa-file"></i>';
+                    echo '                        <p>';
+                    echo '                            Laporan';
+                    echo '                        </p>';
+                    echo '                    </a>';
+                    echo '                </li>';
                     echo '                <li class="nav-header">OPTION</li>';
                     echo '                <li class="nav-item">';
                     echo '                    <a href="' . $baseURL . '/kelola_user" class="nav-link">';
