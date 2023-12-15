@@ -77,8 +77,15 @@
         $('#tgl_keluar').datetimepicker({
             format: 'YYYY-MM-DD'
         });
-
     });
+
+    function dp_edit(id_reparasi) {
+        $('#tgl' + id_reparasi).datetimepicker({
+            format: 'YYYY-MM-DD',
+            todayHighlight: true,
+            autoclose: true,
+        });
+    }
 </script>
 
 </html>

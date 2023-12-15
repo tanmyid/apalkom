@@ -134,7 +134,7 @@
                     echo '                    <a href="' . $baseURL . '/reparasi" class="nav-link">';
                     echo '                        <i class="nav-icon fas fa-wrench"></i>';
                     echo '                        <p>';
-                    echo '                            Kondisi Aset';
+                    echo '                            Reparasi';
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
@@ -146,6 +146,7 @@
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
+                } else {
                     echo '                <li class="nav-item">';
                     echo '                    <a href="' . $baseURL . '/laboratorium" class="nav-link">';
                     echo '                        <i class="nav-icon fas fa-flask"></i>';
@@ -154,7 +155,6 @@
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
-                } else {
                     echo '<li class="nav-item">';
                     echo '                    <a href="' . $baseURL . '/pengajuan" class="nav-link">';
                     echo '                        <i class="nav-icon far fa-image"></i>';

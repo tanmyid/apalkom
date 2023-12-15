@@ -3,7 +3,6 @@
 include 'layouts/header.php';
 // sidebar
 include 'layouts/sidebar.php';
-
 ?>
 <!-- Main content -->
 <section class="content">
@@ -13,7 +12,7 @@ include 'layouts/sidebar.php';
                 <!-- Default box -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Kondisi Aset</h3>
+                        <h3 class="card-title">Data Reparasi</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                 <i class="fas fa-minus"></i>
@@ -144,12 +143,12 @@ include 'layouts/sidebar.php';
                                         <td><?= $tgl_masuk; ?></td>
                                         <td><?= $tgl_keluar; ?></td>
                                         <td class="text-center">
-                                            <button class="btn btn-secondary" data-toggle="modal" data-target="#editDataAset_<?= $kode_aset; ?>"><i class="fas fa-edit"></i> Edit</button>
-                                            <button class="btn btn-danger" data-toggle="modal" data-target="#hapusDataAset_<?= $kode_aset; ?>"><i class="fas fa-trash"></i> Hapus</button>
+                                            <button class="btn btn-secondary" data-toggle="modal" data-target="#editReparasi_<?= $id_reparasi; ?>" onclick="dp_edit(<?= $id_reparasi; ?>)"><i class="fas fa-edit"></i> Edit</button>
+                                            <button class="btn btn-danger" data-toggle="modal" data-target="#hapusReparasi_<?= $id_reparasi; ?>"><i class="fas fa-trash"></i> Hapus</button>
                                         </td>
                                     </tr>
                                     <!-- Modal Edit Aset -->
-                                    <div class="modal fade" id="editDataAset_<?= $kode_aset; ?>">
+                                    <div class="modal fade" id="editReparasi_<?= $id_reparasi; ?>">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -163,75 +162,52 @@ include 'layouts/sidebar.php';
                                                         <div class="row">
                                                             <div class="form-group col">
                                                                 <label for="">Kode Aset</label>
+                                                                <input type="hidden" name="id_reparasi" value="<?= $id_reparasi; ?>" class="form-control" readonly>
                                                                 <input type="text" name="kode_aset" value="<?= $kode_aset; ?>" class="form-control" readonly>
                                                             </div>
+                                                            <div class="form-group col">
+                                                                <label for="">Nama</label>
+                                                                <input type="text" name="nama_aset" value="<?= $nama; ?>" class="form-control" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
                                                             <div class="form-group col">
                                                                 <label for="">Kategori Aset</label>
                                                                 <input type="text" name="kategori_aset" value="<?= $kategori; ?>" class="form-control" readonly>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
                                                             <div class="form-group col">
-                                                                <label for="">Nama Aset</label>
-                                                                <input type="text" name="kategori_aset" value="<?= $nama; ?>" class="form-control" readonly>
-                                                            </div>
-                                                            <div class="form-group col">
-                                                                <label for="">Lokasi</label>
-                                                                <select class="form-control" name="laboratorium" style="width: 100%;">
-                                                                    <?php
-                                                                    mysqli_data_seek($get_data_laboratorium, 0);
-                                                                    while ($data = mysqli_fetch_array($get_data_laboratorium)) :
-                                                                        $id_lab = $data['id_lab'];
-                                                                        $ruangan = $data['ruangan'];
-                                                                        $selected = ($id_lab == $id_lab000) ? 'selected' : ''; // Sesuaikan dengan nilai yang Anda inginkan
-                                                                    ?>
-                                                                        <option value="<?= $id_lab; ?>" <?= $selected; ?>><?= $ruangan; ?></option>
-                                                                    <?php endwhile ?>
+                                                                <label for="">Status Reparasi</label>
+                                                                <select class="form-control" name="status_reparasi" style="width: 100%;">
+                                                                    <option value="perbaikan">Perbaikan</option>
+                                                                    <option value="selesai">Selesai</option>
+                                                                    <option value="rusak">Rusak</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="form-group col">
-                                                                <label for="">Tahun Pengadaan</label>
-                                                                <input type="number" class="form-control" name="tahun_pengadaan" value="<?= $tahun_pengadaan; ?>" placeholder="Isi tahun pengadaan ...">
+                                                                <label>Tanggal Masuk</label>
+                                                                <div class="input-group date" id="tgl_masuk" data-target-input="nearest">
+                                                                    <input type="text" class="form-control datetimepicker-input" data-target="#tgl_masuk" name="tgl_masuk" value="<?= $tgl_masuk; ?>" readonly />
+                                                                    <div class="input-group-append" data-target="#tgl_masuk" data-toggle="datetimepicker">
+                                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="form-group col">
-                                                                <label for="">Status Aset</label>
-                                                                <select name="status_aset" class="form-control">
-                                                                    <?php
-                                                                    if ($status == 'baik') {
-                                                                        echo '
-                                                                        <option selected value="baik">Baik</option>
-                                                                        <option value="perbaikan">Perbaikan</option>
-                                                                        <option value="rusak">Rusak</option>
-                                                                        ';
-                                                                    } elseif ($status == 'perbaikan') {
-                                                                        echo '
-                                                                        <option value="baik">Baik</option>
-                                                                        <option selected value="perbaikan">Perbaikan</option>
-                                                                        <option value="rusak">Rusak</option>
-                                                                        ';
-                                                                    } else {
-                                                                        echo '
-                                                                        <option value="baik">Baik</option>
-                                                                        <option value="perbaikan">Perbaikan</option>
-                                                                        <option selected value="rusak">Rusak</option>
-                                                                        ';
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="form-group col">
-                                                                <label>Catatan</label>
-                                                                <textarea name="catatan" class="form-control" cols="30" rows="5" placeholder="<?= $catatan; ?>"></textarea>
+                                                                <label>Tanggal Keluar</label>
+                                                                <div class="input-group date" id="tgl<?= $id_reparasi; ?>" data-target-input="nearest">
+                                                                    <input type="text" class="form-control datetimepicker-input" data-target="#tgl<?= $id_reparasi; ?>" id="tgl<?= $id_reparasi; ?>" name="tgl_keluar" value="<?= $tgl_keluar; ?>" />
+                                                                    <div class=" input-group-append" data-target="#tgl<?= $id_reparasi; ?>" data-toggle="datetimepicker">
+                                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                                    <button type="submit" class="btn btn-secondary" name="editDataAset">Simpan</button>
+                                                    <button type="submit" class="btn btn-secondary" name="editReparasi">Simpan</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -239,24 +215,24 @@ include 'layouts/sidebar.php';
                                     </div>
                                     <!-- End Modal Edit Aset -->
                                     <!-- Modal Hapus Aset -->
-                                    <div class="modal fade" id="hapusDataAset_<?= $kode_aset; ?>">
+                                    <div class="modal fade" id="hapusReparasi_<?= $id_reparasi; ?>">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Hapus Data Aset</h4>
+                                                    <h4 class="modal-title">Hapus Data</h4>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="" method="post">
-                                                        <input type="hidden" class="form-control" value="<?= $kode_aset; ?>" name="kode_aset">
+                                                        <input type="hidden" class="form-control" value="<?= $id_reparasi; ?>" name="id_reparasi">
                                                         <div class="form-group">
                                                             <label>Anda yakin ingin menghapus data : <?= $kode_aset; ?> (<?= $nama; ?>)??</label>
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                                            <button type="submit" class="btn btn-danger" name="hapusDataAset">Hapus</button>
+                                                            <button type="submit" class="btn btn-danger" name="hapusReparasi">Hapus</button>
                                                     </form>
                                                 </div>
                                             </div>

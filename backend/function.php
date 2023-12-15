@@ -310,3 +310,38 @@ if (isset($_POST['tambahReparasiAset'])) {
 $get_data_reparasi = mysqli_query($koneksi, "SELECT teknisi.id_reparasi, teknisi.kode_aset, nama_aset.nama, teknisi.kategori, teknisi.status_reparasi, teknisi.tgl_masuk, teknisi.tgl_keluar
 FROM teknisi
 INNER JOIN nama_aset ON teknisi.nama = nama_aset.id_nama_aset");
+
+/// edit reparasi 
+if (isset($_POST['editReparasi'])) {
+    $id_reparasi = $_POST['id_reparasi'];
+    $kode_aset = $_POST['kode_aset'];
+    $tgl_masuk = $_POST['tgl_masuk'];
+
+    $tgl_keluar = $_POST['tgl_keluar'];
+    $status_reparasi = $_POST['status_reparasi'];
+
+    $prc = mysqli_query($koneksi, "UPDATE teknisi SET status_reparasi='$status_reparasi', tgl_keluar='$tgl_keluar' WHERE id_reparasi='$id_reparasi'");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di edit");window.location = "' . $baseURL . '/reparasi";';
+    } else {
+        echo 'alert("Data Gagal di edit");window.location = "' . $baseURL . '/reparasi";';
+    }
+    echo '</script>';
+}
+
+/// hapus reparasi
+if (isset($_POST['hapusReparasi'])) {
+    $id_reparasi = $_POST['id_reparasi'];
+
+    $prc = mysqli_query($koneksi, "DELETE FROM teknisi WHERE id_reparasi ='$id_reparasi'");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di hapus");window.location = "' . $baseURL . '/reparasi";';
+    } else {
+        echo 'alert("Data Gagal di hapus");window.location = "' . $baseURL . '/reparasi";';
+    }
+    echo '</script>';
+}
