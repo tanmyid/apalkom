@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2023 at 06:20 AM
+-- Generation Time: Dec 11, 2023 at 05:28 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -45,8 +45,7 @@ INSERT INTO `aset` (`kode_aset`, `kategori`, `nama`, `laboratorium`, `tahun_peng
 ('AST-0001-E', 'Elektronik', 2, 6, 2008, 'baik', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'),
 ('AST-0002-N', 'Non Elektronik', 4, 6, 2008, 'perbaikan', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit2.'),
 ('AST-0003-E', 'Elektronik', 5, 6, 2008, 'perbaikan', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit 2.'),
-('AST-0004-N', 'Non Elektronik', 7, 8, 2009, 'rusak', 'hapusDataAset_'),
-('AST-0005-E', 'Elektronik', 8, 7, 2019, 'perbaikan', '');
+('AST-0004-N', 'Non Elektronik', 7, 8, 2009, 'rusak', 'hapusDataAset_');
 
 -- --------------------------------------------------------
 
@@ -123,13 +122,6 @@ CREATE TABLE `pemusnah` (
   `tgl_pemusnahan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pemusnah`
---
-
-INSERT INTO `pemusnah` (`id_pemusnahan`, `kategori`, `nama`, `kode_aset`, `tgl_pemusnahan`) VALUES
-(2, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-26');
-
 -- --------------------------------------------------------
 
 --
@@ -177,9 +169,8 @@ CREATE TABLE `teknisi` (
 --
 
 INSERT INTO `teknisi` (`id_reparasi`, `kode_aset`, `nama`, `kategori`, `status_reparasi`, `tgl_masuk`, `tgl_keluar`) VALUES
-(1, 'AST-0002-N', 4, 'Non Elektronik', 'selesai', '2023-12-12', '2023-12-15'),
-(3, 'AST-0003-E', 5, 'Elektronik', 'rusak', '2023-12-15', '2023-12-17'),
-(4, 'AST-0005-E', 8, 'Elektronik', 'perbaikan', '2023-12-04', '2023-12-10');
+(1, 'AST-0002-N', 4, 'Non Elektronik', 'perbaikan', '2023-12-12', '2023-12-14'),
+(2, 'AST-0003-E', 5, 'Elektronik', 'perbaikan', '2023-12-01', '2023-12-28');
 
 --
 -- Indexes for dumped tables
@@ -262,7 +253,7 @@ ALTER TABLE `nama_aset`
 -- AUTO_INCREMENT for table `pemusnah`
 --
 ALTER TABLE `pemusnah`
-  MODIFY `id_pemusnahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pemusnahan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
@@ -274,7 +265,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `teknisi`
 --
 ALTER TABLE `teknisi`
-  MODIFY `id_reparasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_reparasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
