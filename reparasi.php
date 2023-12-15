@@ -23,9 +23,9 @@ include 'layouts/sidebar.php';
                         </div>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahDataAset"><i class="fas fa-plus"></i> Tambah</button>
-                        <!-- Modal Tambah Reparasi Aset -->
-                        <div class="modal fade" id="tambahDataAset">
+                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahReparasi"><i class="fas fa-plus"></i> Tambah</button>
+                        <!-- Modal Tambah Reparasi -->
+                        <div class="modal fade" id="tambahReparasi">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -41,7 +41,7 @@ include 'layouts/sidebar.php';
                                                     <label for="">Kode Aset</label>
                                                     <select class="form-control" name="mySelect" id="mySelect" required onchange="getSelectedOption()">
                                                         <option selected>Pilih..</option>
-                                                        <?php while ($data = mysqli_fetch_array($get_data_aset_rusak)) :
+                                                        <?php while ($data = mysqli_fetch_array($get_data_aset_perbaikan)) :
                                                             $kode_aset = $data['kode_aset'];
                                                             $id_lab = $data['id_lab'];
                                                             $id_namset = $data['id_namset'];

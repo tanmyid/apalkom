@@ -282,7 +282,7 @@ if (isset($_POST['hapusDataAset'])) {
 /// end data aset function
 
 /// kondisi aset function
-$get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
+$get_data_aset_perbaikan = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
 INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='perbaikan' ORDER BY aset.kode_aset ASC");
 /// tambah aset reparasi
@@ -342,6 +342,65 @@ if (isset($_POST['hapusReparasi'])) {
         echo ' alert("Data Berhasil di hapus");window.location = "' . $baseURL . '/reparasi";';
     } else {
         echo 'alert("Data Gagal di hapus");window.location = "' . $baseURL . '/reparasi";';
+    }
+    echo '</script>';
+}
+// end reparasi function
+
+/// pemusnahan function
+/// get data aset rusak
+$get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
+INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
+INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='rusak' ORDER BY aset.kode_aset ASC");
+// get dara pemusnahan
+$get_data_pemusnahan = mysqli_query($koneksi, "SELECT pemusnah.id_pemusnahan, pemusnah.kategori, nama_aset.nama, pemusnah.kode_aset, pemusnah.tgl_pemusnahan
+FROM pemusnah
+INNER JOIN nama_aset ON pemusnah.nama = nama_aset.id_nama_aset");
+/// tambah pemusnahan
+if (isset($_POST['tambahPemusnahan'])) {
+    $kode_aset = $_POST['mySelect'];
+    $nama = $_POST['selectedIdNamset'];
+    $kategori = $_POST['selectedKategori'];
+    $tgl_pemusnahan = $_POST['tgl_pemusnahan'];
+
+    $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan) 
+                                    VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan')");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/pemusnahan";';
+    } else {
+        echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/pemusnahan";';
+    }
+    echo '</script>';
+}
+/// edit pemusnahan 
+if (isset($_POST['editPemusnahan'])) {
+    $id_pemusnahan = $_POST['id_pemusnahan'];
+    $tgl_pemusnahan = $_POST['tgl_pemusnahan'];
+
+    $prc = mysqli_query($koneksi, "UPDATE pemusnah SET tgl_pemusnahan='$tgl_pemusnahan' WHERE id_pemusnahan='$id_pemusnahan'");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di edit");window.location = "' . $baseURL . '/pemusnahan";';
+    } else {
+        echo 'alert("Data Gagal di edit");window.location = "' . $baseURL . '/pemusnahan";';
+    }
+    echo '</script>';
+}
+
+/// hapus pemusnahan
+if (isset($_POST['hapusPemusnahan'])) {
+    $id_pemusnahan = $_POST['id_pemusnahan'];
+
+    $prc = mysqli_query($koneksi, "DELETE FROM pemusnah WHERE id_pemusnahan ='$id_pemusnahan'");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di hapus");window.location = "' . $baseURL . '/pemusnahan";';
+    } else {
+        echo 'alert("Data Gagal di hapus");window.location = "' . $baseURL . '/pemusnahan";';
     }
     echo '</script>';
 }

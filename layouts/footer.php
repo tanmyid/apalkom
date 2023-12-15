@@ -56,12 +56,13 @@
         $('#formatDataTables').DataTable({
             "paging": true,
             "lengthChange": true,
-            "lengthMenu": [5, 10, 20, 50, 100, 200, 500],
+            "lengthMenu": [10, 20, 50, 100, 200, 500],
             "searching": true,
             "ordering": true,
             "info": true,
             "autoWidth": false,
             "responsive": true,
+
         });
         $('.select2').select2()
 
@@ -77,10 +78,21 @@
         $('#tgl_keluar').datetimepicker({
             format: 'YYYY-MM-DD'
         });
+        $('#tgl_pemusnahan').datetimepicker({
+            format: 'YYYY-MM-DD'
+        });
     });
 
     function dp_edit(id_reparasi) {
         $('#tgl' + id_reparasi).datetimepicker({
+            format: 'YYYY-MM-DD',
+            todayHighlight: true,
+            autoclose: true,
+        });
+    };
+
+    function dp_edit2(id_pemusnahan) {
+        $('#tgl' + id_pemusnahan).datetimepicker({
             format: 'YYYY-MM-DD',
             todayHighlight: true,
             autoclose: true,
