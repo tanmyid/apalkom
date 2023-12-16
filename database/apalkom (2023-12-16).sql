@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2023 at 12:57 PM
+-- Generation Time: Dec 15, 2023 at 06:20 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -33,7 +33,7 @@ CREATE TABLE `aset` (
   `nama` int(11) NOT NULL,
   `laboratorium` int(11) NOT NULL,
   `tahun_pengadaan` year(4) NOT NULL,
-  `status_aset` enum('baik','perbaikan','rusak','bekas_pakai') NOT NULL,
+  `status_aset` enum('baik','perbaikan','rusak') NOT NULL,
   `catatan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -46,8 +46,7 @@ INSERT INTO `aset` (`kode_aset`, `kategori`, `nama`, `laboratorium`, `tahun_peng
 ('AST-0002-N', 'Non Elektronik', 4, 6, 2008, 'perbaikan', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit2.'),
 ('AST-0003-E', 'Elektronik', 5, 6, 2008, 'perbaikan', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit 2.'),
 ('AST-0004-N', 'Non Elektronik', 7, 8, 2009, 'rusak', 'hapusDataAset_'),
-('AST-0005-E', 'Elektronik', 8, 7, 2019, 'perbaikan', ''),
-('AST-0006-E', 'Elektronik', 2, 8, 2007, 'bekas_pakai', '');
+('AST-0005-E', 'Elektronik', 8, 7, 2019, 'perbaikan', '');
 
 -- --------------------------------------------------------
 
@@ -121,22 +120,15 @@ CREATE TABLE `pemusnah` (
   `kategori` enum('Elektronik','Non Elektronik') NOT NULL,
   `nama` int(11) NOT NULL,
   `kode_aset` varchar(100) NOT NULL,
-  `tgl_pemusnahan` date NOT NULL,
-  `metode` enum('arsip','sampah','hibah') NOT NULL
+  `tgl_pemusnahan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pemusnah`
 --
 
-INSERT INTO `pemusnah` (`id_pemusnahan`, `kategori`, `nama`, `kode_aset`, `tgl_pemusnahan`, `metode`) VALUES
-(10, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-22', 'hibah'),
-(21, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-15', 'sampah'),
-(22, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-14', 'arsip'),
-(23, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-21', 'sampah'),
-(24, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-07', 'hibah'),
-(25, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-29', 'arsip'),
-(26, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-19', 'sampah');
+INSERT INTO `pemusnah` (`id_pemusnahan`, `kategori`, `nama`, `kode_aset`, `tgl_pemusnahan`) VALUES
+(2, 'Non Elektronik', 7, 'AST-0004-N', '2023-12-26');
 
 -- --------------------------------------------------------
 
@@ -187,9 +179,7 @@ CREATE TABLE `teknisi` (
 INSERT INTO `teknisi` (`id_reparasi`, `kode_aset`, `nama`, `kategori`, `status_reparasi`, `tgl_masuk`, `tgl_keluar`) VALUES
 (1, 'AST-0002-N', 4, 'Non Elektronik', 'selesai', '2023-12-12', '2023-12-15'),
 (3, 'AST-0003-E', 5, 'Elektronik', 'rusak', '2023-12-15', '2023-12-17'),
-(4, 'AST-0005-E', 8, 'Elektronik', 'perbaikan', '2023-12-04', '2023-12-10'),
-(5, 'AST-0002-N', 4, 'Non Elektronik', 'perbaikan', '2023-12-15', '2023-12-22'),
-(6, 'AST-0005-E', 8, 'Elektronik', 'perbaikan', '2023-12-22', '2023-12-22');
+(4, 'AST-0005-E', 8, 'Elektronik', 'perbaikan', '2023-12-04', '2023-12-10');
 
 --
 -- Indexes for dumped tables
@@ -272,7 +262,7 @@ ALTER TABLE `nama_aset`
 -- AUTO_INCREMENT for table `pemusnah`
 --
 ALTER TABLE `pemusnah`
-  MODIFY `id_pemusnahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_pemusnahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
@@ -284,7 +274,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `teknisi`
 --
 ALTER TABLE `teknisi`
-  MODIFY `id_reparasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_reparasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
