@@ -371,22 +371,20 @@ if (isset($_POST['tambahPemusnahan'])) {
 
     $cek_duplicate = mysqli_num_rows(mysqli_query($koneksi, "SELECT kode_aset FROM pemusnah WHERE kode_aset='$kode_aset'"));
 
-    $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
-                                    VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
+    // $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
+    // VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
 
-    echo '<script>';
-    if ($cek_duplicate > 0) {
-        echo ' alert("Data Sudah Ada!!!");window.location = "' . $baseURL . '/pemusnahan";';
+    if (!is_null($cek_duplicate)) {
+        // die();
+        echo '<script>alert("Data Sudah Ada!!!");window.location = "' . $baseURL . '/pemusnahan";</script>';
     } else {
-        $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
-                                    VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
+        $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode)  VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
         if ($prc == TRUE) {
-            echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/pemusnahan";';
+            echo '<script> alert("Data Berhasil di input");window.location = "' . $baseURL . '/pemusnahan";</script>';
         } else {
-            echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/pemusnahan";';
+            echo '<script>alert("Data Gagal di input");window.location = "' . $baseURL . '/pemusnahan";</script>';
         }
     }
-    echo '</script>';
 }
 /// edit pemusnahan 
 if (isset($_POST['editPemusnahan'])) {
