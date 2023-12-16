@@ -282,7 +282,8 @@ if (isset($_POST['hapusDataAset'])) {
 /// end data aset function
 
 /// kondisi aset function
-$get_data_aset_perbaikan = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
+$get_data_aset_perbaikan = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset 
+FROM aset 
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
 INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='perbaikan' ORDER BY aset.kode_aset ASC");
 /// tambah aset reparasi
@@ -294,11 +295,15 @@ if (isset($_POST['tambahReparasiAset'])) {
     $tgl_masuk = $_POST['tgl_masuk'];
     $tgl_keluar = $_POST['tgl_keluar'];
 
+    $cek_duplicate_reparasi = mysqli_fetch_array(mysqli_query($koneksi, "SELECT kode_aset FROM teknisi WHERE kode_aset='$kode_aset'"));
+
     $prc = mysqli_query($koneksi,   "INSERT INTO teknisi (id_reparasi, kode_aset, nama , kategori, status_reparasi, tgl_masuk, tgl_keluar) 
                                     VALUES ('', '$kode_aset', '$nama', '$kategori', '$status_reparasi', '$tgl_masuk', '$tgl_keluar')");
 
     echo '<script>';
-    if ($prc == TRUE) {
+    if ($cek_duplicate_reparasi > 0) {
+        echo ' alert("Data Reparasi Sudah Ada !!!");window.location = "' . $baseURL . '/reparasi";';
+    } elseif ($prc == TRUE) {
         echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/reparasi";';
     } else {
         echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/reparasi";';
@@ -364,14 +369,22 @@ if (isset($_POST['tambahPemusnahan'])) {
     $tgl_pemusnahan = $_POST['tgl_pemusnahan'];
     $metode = $_POST['metode'];
 
+    $cek_duplicate = mysqli_num_rows(mysqli_query($koneksi, "SELECT kode_aset FROM pemusnah WHERE kode_aset='$kode_aset'"));
+
     $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
                                     VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
 
     echo '<script>';
-    if ($prc == TRUE) {
-        echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/pemusnahan";';
+    if ($cek_duplicate > 0) {
+        echo ' alert("Data Sudah Ada!!!");window.location = "' . $baseURL . '/pemusnahan";';
     } else {
-        echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/pemusnahan";';
+        $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
+                                    VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
+        if ($prc == TRUE) {
+            echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/pemusnahan";';
+        } else {
+            echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/pemusnahan";';
+        }
     }
     echo '</script>';
 }
