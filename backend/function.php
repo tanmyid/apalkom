@@ -353,7 +353,7 @@ $get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kateg
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
 INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='rusak' ORDER BY aset.kode_aset ASC");
 // get dara pemusnahan
-$get_data_pemusnahan = mysqli_query($koneksi, "SELECT pemusnah.id_pemusnahan, pemusnah.kategori, nama_aset.nama, pemusnah.kode_aset, pemusnah.tgl_pemusnahan
+$get_data_pemusnahan = mysqli_query($koneksi, "SELECT pemusnah.id_pemusnahan, pemusnah.kategori, nama_aset.nama, pemusnah.kode_aset, pemusnah.tgl_pemusnahan, pemusnah.metode
 FROM pemusnah
 INNER JOIN nama_aset ON pemusnah.nama = nama_aset.id_nama_aset");
 /// tambah pemusnahan
@@ -362,9 +362,10 @@ if (isset($_POST['tambahPemusnahan'])) {
     $nama = $_POST['selectedIdNamset'];
     $kategori = $_POST['selectedKategori'];
     $tgl_pemusnahan = $_POST['tgl_pemusnahan'];
+    $metode = $_POST['metode'];
 
-    $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan) 
-                                    VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan')");
+    $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
+                                    VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
 
     echo '<script>';
     if ($prc == TRUE) {

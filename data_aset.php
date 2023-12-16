@@ -89,6 +89,7 @@ include 'layouts/sidebar.php';
                                                     <select name="status_aset" class="form-control">
                                                         <option selected value="baik">Baik</option>
                                                         <option value="perbaikan">Perbaikan</option>
+                                                        <option value="bekas_pakai">Bekas Pakai</option>
                                                         <option value="rusak">Rusak</option>
                                                     </select>
                                                 </div>
@@ -147,6 +148,8 @@ include 'layouts/sidebar.php';
                                                                     echo '<h5><span class="badge badge-success">Baik</span></h5>';
                                                                 } elseif ($status == 'perbaikan') {
                                                                     echo '<h5><span class="badge badge-warning">Perbaikan</span></h5>';
+                                                                } elseif ($status == 'bekas_pakai') {
+                                                                    echo '<h5><span class="badge badge-secondary">Bekas Pakai</span></h5>';
                                                                 } else {
                                                                     echo '<h5><span class="badge badge-danger">Rusak</span></h5>';
                                                                 }

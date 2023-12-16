@@ -73,6 +73,19 @@ include 'layouts/sidebar.php';
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group col">
+                                                    <label>Metode Pemusnahan</label>
+                                                    <select name="metode" class="form-control">
+                                                        <option value="arsip">Di Arsipkan</option>
+                                                        <option value="sampah">Di Buang</option>
+                                                        <option value="hibah">Di Hibahkan</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col">
+
+                                                </div>
+                                            </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -90,6 +103,7 @@ include 'layouts/sidebar.php';
                                 <th>Nama</th>
                                 <th>Kode Aset</th>
                                 <th>Tanggal Pemusnahan</th>
+                                <th>Metode Pemusnahan</th>
                                 <th>Opsi</th>
                             </thead>
                             <tbody>
@@ -101,7 +115,7 @@ include 'layouts/sidebar.php';
                                     $nama = $data['nama'];
                                     $kode_aset = $data['kode_aset'];
                                     $tgl_pemusnahan = $data['tgl_pemusnahan'];
-
+                                    $metode = $data['metode'];
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $no++; ?></td>
@@ -109,6 +123,15 @@ include 'layouts/sidebar.php';
                                         <td><?= $kode_aset; ?></td>
                                         <td><?= $nama; ?></td>
                                         <td><?= $tgl_pemusnahan; ?></td>
+                                        <td class="text-center"><?php
+                                                                if ($metode == 'hibah') {
+                                                                    echo '<h5><span class="badge badge-success">Di Hibahkan</span></h5>';
+                                                                } elseif ($metode == 'arsip') {
+                                                                    echo '<h5><span class="badge badge-warning">Di Arsipkan</span></h5>';
+                                                                } else {
+                                                                    echo '<h5><span class="badge badge-danger">Di Buang</span></h5>';
+                                                                }
+                                                                ?></td>
                                         <td class="text-center">
                                             <button class="btn btn-secondary" data-toggle="modal" data-target="#editPemusnahan_<?= $id_pemusnahan; ?>" onclick="dp_edit2(<?= $id_pemusnahan; ?>)"><i class="fas fa-edit"></i> Edit</button>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#hapusPemusnahan_<?= $id_pemusnahan; ?>"><i class="fas fa-trash"></i> Hapus</button>
