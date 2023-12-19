@@ -36,7 +36,7 @@ include 'layouts/sidebar.php';
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="" method="post">
+                                        <form action="" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="form-group col">
                                                     <label for="">Kode Aset</label>
@@ -96,6 +96,15 @@ include 'layouts/sidebar.php';
                                             </div>
                                             <div class="row">
                                                 <div class="form-group col">
+                                                    <label for="">Gambar</label>
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" name="gambar" id="gambar-nama" class="custom-file-input" accept="image/*" required>
+                                                            <label class="custom-file-label" for="gambar-nama">Pilih Gambar ...</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col">
                                                     <label>Catatan</label>
                                                     <textarea name="catatan" class="form-control" cols="30" rows="5" placeholder="Silahkan isi catatan, jika di perlukan ..."></textarea>
                                                 </div>
@@ -116,6 +125,7 @@ include 'layouts/sidebar.php';
                                 <th>Kode Aset</th>
                                 <th>Kategori</th>
                                 <th>Nama</th>
+                                <th>Gambar</th>
                                 <th>Lokasi</th>
                                 <th>Tahun Pengadaan</th>
                                 <th>Status Aset</th>
@@ -134,12 +144,14 @@ include 'layouts/sidebar.php';
                                     $status = $data['status_aset'];
                                     $catatan = $data['catatan'];
                                     $id_lab000 = $data['id_laboratorium'];
+                                    $gambar = $data['img'];
                                 ?>
                                     <tr>
                                         <td class="text-center"><?= $no++; ?></td>
                                         <td><?= $kode_aset; ?></td>
                                         <td><?= $kategori; ?></td>
                                         <td><?= $nama; ?></td>
+                                        <td class="text-center"><img src="<?= $gambar; ?>" alt="" height="200rem"></td>
                                         <td><?= $lokasi; ?></td>
                                         <td class="text-center"><?= $tahun_pengadaan; ?></td>
 

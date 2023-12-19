@@ -20,6 +20,8 @@
 <script src="<?= $baseURL; ?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?= $baseURL; ?>/assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- bs-custom-file-input -->
+<script src="<?= $baseURL; ?>/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="<?= $baseURL; ?>/assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= $baseURL; ?>/assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -98,6 +100,9 @@
             autoclose: true,
         });
     }
+    $(function() {
+        bsCustomFileInput.init();
+    });
 </script>
 
 </html>

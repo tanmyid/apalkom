@@ -216,7 +216,7 @@ $non_elektronik = "AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-N";
 /// get data aset
 $get_data_aset = mysqli_query(
     $koneksi,
-    "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.tahun_pengadaan, aset.status_aset, aset.catatan, laboratorium.id_laboratorium FROM aset 
+    "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.tahun_pengadaan, aset.status_aset, aset.catatan, laboratorium.id_laboratorium, aset.img FROM aset 
  INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
  INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium ORDER BY `aset`.`kode_aset` ASC"
 );
@@ -229,9 +229,10 @@ if (isset($_POST['tambahDataAset'])) {
     $tahun_pengadaan = $_POST['tahun_pengadaan'];
     $status_aset = $_POST['status_aset'];
     $catatan = $_POST['catatan'];
+    $imgBase64 = 'data:' . mime_content_type($_FILES['gambar']['tmp_name']) . ';base64,' . base64_encode(file_get_contents($_FILES['gambar']['tmp_name']));
 
-    $prc = mysqli_query($koneksi,   "INSERT INTO aset (kode_aset, kategori, nama, laboratorium, tahun_pengadaan, status_aset, catatan	) 
-                                    VALUES ('$kode_aset', '$kategori', '$nama', '$lokasi', '$tahun_pengadaan', '$status_aset', '$catatan')");
+    $prc = mysqli_query($koneksi,   "INSERT INTO aset (kode_aset, kategori, nama, laboratorium, tahun_pengadaan, status_aset, catatan, img) 
+                                    VALUES ('$kode_aset', '$kategori', '$nama', '$lokasi', '$tahun_pengadaan', '$status_aset', '$catatan', '$imgBase64')");
 
     echo '<script>';
     if ($prc == TRUE) {
@@ -282,7 +283,7 @@ if (isset($_POST['hapusDataAset'])) {
 /// end data aset function
 
 /// kondisi aset function
-$get_data_aset_perbaikan = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset 
+$get_data_aset_perbaikan = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset, aset.img
 FROM aset 
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
 INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='perbaikan' ORDER BY aset.kode_aset ASC");
