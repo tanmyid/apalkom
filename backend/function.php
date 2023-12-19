@@ -295,20 +295,20 @@ if (isset($_POST['tambahReparasiAset'])) {
     $tgl_masuk = $_POST['tgl_masuk'];
     $tgl_keluar = $_POST['tgl_keluar'];
 
-    $cek_duplicate_reparasi = mysqli_fetch_array(mysqli_query($koneksi, "SELECT kode_aset FROM teknisi WHERE kode_aset='$kode_aset'"));
+    $cek_duplicate = mysqli_fetch_array(mysqli_query($koneksi, "SELECT kode_aset FROM teknisi WHERE kode_aset='$kode_aset'"));
 
-    $prc = mysqli_query($koneksi,   "INSERT INTO teknisi (id_reparasi, kode_aset, nama , kategori, status_reparasi, tgl_masuk, tgl_keluar) 
-                                    VALUES ('', '$kode_aset', '$nama', '$kategori', '$status_reparasi', '$tgl_masuk', '$tgl_keluar')");
+    // $prc = mysqli_query($koneksi,   "INSERT INTO teknisi (id_reparasi, kode_aset, nama , kategori, status_reparasi, tgl_masuk, tgl_keluar) VALUES ('', '$kode_aset', '$nama', '$kategori', '$status_reparasi', '$tgl_masuk', '$tgl_keluar')");
 
-    echo '<script>';
-    if ($cek_duplicate_reparasi > 0) {
-        echo ' alert("Data Reparasi Sudah Ada !!!");window.location = "' . $baseURL . '/reparasi";';
-    } elseif ($prc == TRUE) {
-        echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/reparasi";';
+    if (!is_null($cek_duplicate)) {
+        echo '<script>alert("Data Sudah Ada!!!");window.location = "' . $baseURL . '/reparasi";</script>';
     } else {
-        echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/reparasi";';
+        $prc = mysqli_query($koneksi,   "INSERT INTO teknisi (id_reparasi, kode_aset, nama , kategori, status_reparasi, tgl_masuk, tgl_keluar) VALUES ('', '$kode_aset', '$nama', '$kategori', '$status_reparasi', '$tgl_masuk', '$tgl_keluar')");
+        if ($prc == TRUE) {
+            echo '<script> alert("Data Berhasil di input");window.location = "' . $baseURL . '/reparasi";</script>';
+        } else {
+            echo '<script>alert("Data Gagal di input");window.location = "' . $baseURL . '/reparasi";</script>';
+        }
     }
-    echo '</script>';
 }
 
 /// get data reparasi
@@ -375,7 +375,6 @@ if (isset($_POST['tambahPemusnahan'])) {
     // VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
 
     if (!is_null($cek_duplicate)) {
-        // die();
         echo '<script>alert("Data Sudah Ada!!!");window.location = "' . $baseURL . '/pemusnahan";</script>';
     } else {
         $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode)  VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");

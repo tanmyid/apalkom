@@ -86,9 +86,9 @@
                                                                                 echo 'Laboran';
                                                                             } ?></a>
                             </li>
-                            <li class="list-group-item">
+                            <!-- <li class="list-group-item">
                                 <b>Petugas Lab : </b> <a class="float-right">1</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
