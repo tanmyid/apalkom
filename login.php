@@ -22,6 +22,7 @@ include 'backend/includes.php';
 </head>
 
 <body class="hold-transition login-page">
+    <img src="<?= $baseURL; ?>/assets/images/logosma.png" alt="" width="200">
     <div class="login-box">
         <div class="login-logo">
             <a class="font-weight-bold" href="<?= $baseURL; ?>/login.php"><i class="fas fa-cogs"></i> <b>APAL</b>KOM</a>
