@@ -24,6 +24,7 @@ include 'layouts/sidebar.php';
                     </div>
                     <div class="card-body">
                         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahReparasi"><i class="fas fa-plus"></i> Tambah</button>
+                        <a href="<?= $baseURL; ?>/backend/laporan/reparasi" class="btn btn-success float-right" target="_blank"><i class="fas fa-print"></i> Cetak</a>
                         <!-- Modal Tambah Reparasi -->
                         <div class="modal fade" id="tambahReparasi">
                             <div class="modal-dialog modal-lg">
@@ -140,8 +141,8 @@ include 'layouts/sidebar.php';
                                                                     echo '<h5><span class="badge badge-danger">Rusak</span></h5>';
                                                                 }
                                                                 ?></td>
-                                        <td><?= $tgl_masuk; ?></td>
-                                        <td><?= $tgl_keluar; ?></td>
+                                        <td class="text-center"><?= $tgl_masuk; ?></td>
+                                        <td class="text-center"><?= $tgl_keluar; ?></td>
                                         <td class="text-center">
                                             <button class="btn btn-secondary" data-toggle="modal" data-target="#editReparasi_<?= $id_reparasi; ?>" onclick="dp_edit(<?= $id_reparasi; ?>)"><i class="fas fa-edit"></i> Edit</button>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#hapusReparasi_<?= $id_reparasi; ?>"><i class="fas fa-trash"></i> Hapus</button>
