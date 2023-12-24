@@ -103,6 +103,7 @@
     $(function() {
         bsCustomFileInput.init();
     });
+    $('table.display').DataTable();
 </script>
 
 </html>
