@@ -3,6 +3,13 @@ require_once '../../vendor/autoload.php';
 
 $mpdf = new \Mpdf\Mpdf(['setAutoTopMargin' => 'stretch']);
 
+// Document Metadata
+include '../function.php';
+$mpdf->SetTitle('Laporan Data Aset');
+$mpdf->SetAuthor($_SESSION['nama']);
+$mpdf->SetCreator('SMA N 1 PATI');
+$mpdf->SetSubject('Data Aset');
+
 function print_data()
 {
     $html = '';
@@ -54,7 +61,7 @@ EOD;
 
 // KONTEN
 $html = <<<EOD
-<html> <head> <title>Laporan Data Aset</title> </head> <style>body { font-family: monospace; } p { padding-top: 1; font-size: xx-large; font-weight: bolder; } table {border-collapse: collapse; width: 100%; margin: auto; font-size: large; } th,td { border: 1px solid; text-align: left; padding: 8px; text-align: center; width: auto;} th {background-color: grey; color: azure; } </style>
+<html><head></head> <style>body { font-family: monospace; } p { padding-top: 1; font-size: xx-large; font-weight: bolder; } table {border-collapse: collapse; width: 100%; margin: auto; font-size: large; } th,td { border: 1px solid; text-align: left; padding: 8px; text-align: center; width: auto;} th {background-color: grey; color: azure; } </style>
 <body><div><table><thead>
 <tr>
     <th>No</th>
@@ -77,5 +84,5 @@ $mpdf->AddPage('L');
 $mpdf->WriteHTML($html);
 
 
-$mpdf->Output();
-$mpdf->OutputFile(__DIR__ . '/pdf/' . base64_encode(substr(str_shuffle('0123456789'), 0, 3)) . '.pdf');
+$mpdf->Output('laporan Data Aset ' . date('Y-m-d') . '.pdf', 'I');
+// $mpdf->OutputFile(__DIR__ . '/pdf/' . base64_encode(substr(str_shuffle('0123456789'), 0, 3)) . '.pdf');
