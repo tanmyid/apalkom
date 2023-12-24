@@ -53,7 +53,7 @@ $htmlFooter = <<<EOD
 <table width="100%">
     <tr>
         <td width="33%" style="text-align: left; border-style: none;">{PAGENO}/{nbpg}</td>
-        <td width="33%" style="text-align: right; border-style: none;">Reparasi Aset</td>
+        <td width="33%" style="text-align: right; border-style: none;">Pemusnahan Aset</td>
     </tr>
 </table>
 EOD;
