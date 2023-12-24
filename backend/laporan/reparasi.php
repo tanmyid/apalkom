@@ -8,7 +8,7 @@ include '../function.php';
 $mpdf->SetTitle('Laporan Reparasi');
 $mpdf->SetAuthor($_SESSION['nama']);
 $mpdf->SetCreator('SMA N 1 PATI');
-$mpdf->SetSubject('Data Aset');
+$mpdf->SetSubject('Reparasi');
 
 function print_data()
 {
