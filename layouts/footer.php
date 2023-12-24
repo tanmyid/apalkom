@@ -100,10 +100,22 @@
             autoclose: true,
         });
     }
+
+    function dp_edit3(id_ajuan) {
+        $('#tgl' + id_ajuan).datetimepicker({
+            format: 'YYYY-MM-DD',
+            todayHighlight: true,
+            autoclose: true,
+        });
+    }
+
     $(function() {
         bsCustomFileInput.init();
     });
-    $('table.display').DataTable();
+    $('table.display').DataTable({
+        "autoWidth": false,
+        "responsive": true
+    });
 </script>
 
 </html>

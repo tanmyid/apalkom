@@ -353,7 +353,7 @@ if (isset($_POST['hapusReparasi'])) {
 }
 // end reparasi function
 
-/// pemusnahan function
+// pemusnahan function
 /// get data aset rusak
 $get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
@@ -413,6 +413,66 @@ if (isset($_POST['hapusPemusnahan'])) {
         echo ' alert("Data Berhasil di hapus");window.location = "' . $baseURL . '/pemusnahan";';
     } else {
         echo 'alert("Data Gagal di hapus");window.location = "' . $baseURL . '/pemusnahan";';
+    }
+    echo '</script>';
+}
+
+// end pemusnahan function
+
+// function pengajuan
+$get_data_pengajuan = mysqli_query(
+    $koneksi,
+    "SELECT kalab.id_ajuan, kalab.kategori, kalab.nama, kalab.jumlah, kalab.laboratorium, kalab.tgl_pengajuan, laboratorium.ruangan 
+    FROM kalab
+    JOIN laboratorium ON kalab.laboratorium = laboratorium.id_laboratorium"
+);
+/// tambah pengajuan
+if (isset($_POST['tambahPengajuan'])) {
+    $kategori = $_POST['kategori'];
+    $nama_aset = $_POST['nama_aset'];
+    $jumlah = $_POST['jumlah'];
+    $laboratorium = $_POST['laboratorium'];
+    $tgl_pengajuan = $_POST['tgl_pengajuan'];
+
+    $prc = mysqli_query($koneksi, "INSERT INTO kalab (id_ajuan, kategori, nama, jumlah, laboratorium, tgl_pengajuan) VALUES ('', '$kategori', '$nama_aset', '$jumlah', '$laboratorium', '$tgl_pengajuan')");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di input");window.location = "' . $baseURL . '/pengajuan";';
+    } else {
+        echo 'alert("Data Gagal di input");window.location = "' . $baseURL . '/pengajuan";';
+    }
+    echo '</script>';
+}
+
+/// edit pengajuan
+if (isset($_POST['editPengajuan'])) {
+    $id_ajuan = $_POST['id_ajuan'];
+    $jumlah = $_POST['jumlah'];
+    $laboratorium = $_POST['laboratorium'];
+    $tgl_pengajuan = $_POST['tgl_pengajuan'];
+
+    $prc = mysqli_query($koneksi, "UPDATE kalab SET jumlah='$jumlah',laboratorium='$laboratorium',tgl_pengajuan='$tgl_pengajuan' WHERE id_ajuan='$id_ajuan'");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di edit");window.location = "' . $baseURL . '/pengajuan";';
+    } else {
+        echo 'alert("Data Gagal di edit");window.location = "' . $baseURL . '/pengajuan";';
+    }
+    echo '</script>';
+}
+/// hapus pemusnahan
+if (isset($_POST['hapuPengajuan'])) {
+    $id_ajuan = $_POST['id_ajuan'];
+
+    $prc = mysqli_query($koneksi, "DELETE FROM kalab WHERE id_ajuan='$id_ajuan'");
+
+    echo '<script>';
+    if ($prc == TRUE) {
+        echo ' alert("Data Berhasil di hapus");window.location = "' . $baseURL . '/pengajuan";';
+    } else {
+        echo 'alert("Data Gagal di hapus");window.location = "' . $baseURL . '/pengajuan";';
     }
     echo '</script>';
 }

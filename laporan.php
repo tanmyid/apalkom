@@ -33,7 +33,7 @@ include 'layouts/sidebar.php';
                 <div class="tab-content" id="custom-content-below-tabContent">
                     <div class="tab-pane fade active show mt-2" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
                         <a href="<?= $baseURL; ?>/backend/laporan/data_aset" class="btn btn-success mb-2" target="_blank"><i class="fas fa-print"></i> Cetak</a>
-                        <table id="" class="table table-bordered table-hover display">
+                        <table id="" class="table table-bordered table-hover display" style="width:100%">
                             <thead class="text-center">
                                 <th>No</th>
                                 <th>Kode Aset</th>
@@ -94,7 +94,7 @@ include 'layouts/sidebar.php';
                     </div>
                     <div class="tab-pane fade mt-2" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                         <a href="<?= $baseURL; ?>/backend/laporan/reparasi" class="btn btn-success mb-2" target="_blank"><i class="fas fa-print"></i> Cetak</a>
-                        <table id="" class="table table-bordered table-hover display">
+                        <table id="" class="table table-bordered table-hover display" style="width:100%">
                             <thead class="text-center">
                                 <th>No</th>
                                 <th>Kode Aset</th>
@@ -149,7 +149,7 @@ include 'layouts/sidebar.php';
                     </div>
                     <div class="tab-pane fade mt-2" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                         <a href="<?= $baseURL; ?>/backend/laporan/pemusnahan" class="btn btn-success mb-2" target="_blank"><i class="fas fa-print"></i> Cetak</a>
-                        <table id="" class="table table-bordered table-hover display">
+                        <table id="" class="table table-bordered table-hover display" style="width:100%">
                             <thead class="text-center">
                                 <th>No</th>
                                 <th>Kategori</th>
