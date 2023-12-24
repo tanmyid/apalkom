@@ -24,6 +24,7 @@ include 'layouts/sidebar.php';
                     </div>
                     <div class="card-body">
                         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#tambahPemusnahan"><i class="fas fa-plus"></i> Tambah</button>
+                        <a href="<?= $baseURL; ?>/backend/laporan/pemusnahan" class="btn btn-success float-right" target="_blank"><i class="fas fa-print"></i> Cetak</a>
                         <!-- Modal Tambah Reparasi Aset -->
                         <div class="modal fade" id="tambahPemusnahan">
                             <div class="modal-dialog modal-lg">
