@@ -73,13 +73,13 @@ if (isset($_POST['btnLogin'])) {
             $_SESSION['username'] = $username;
             $_SESSION['nama'] = $data['nama'];
             $_SESSION['level'] = 'laboran';
-            header('location:index.php');
+            header('location:index');
         } else if ($data['level'] == "kalab") {
             $_SESSION['login'] = 'true';
             $_SESSION['username'] = $username;
             $_SESSION['nama'] = $data['nama'];
             $_SESSION['level'] = 'kalab';
-            header('location:index.php');
+            header('location:index');
         } else {
             echo '
             <script>alert("Username atau Password salah");
@@ -211,8 +211,8 @@ $count_data_aset = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_
 /// generate kode aset
 $get_kode = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as KD FROM aset;"))['KD'];
 /// kategori
-$elektronik = "AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-E";
-$non_elektronik = "AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-N";
+$elektronik = "SMA1NP-AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-E";
+$non_elektronik = "SMA1NP-AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-N";
 /// get data aset
 $get_data_aset = mysqli_query(
     $koneksi,
