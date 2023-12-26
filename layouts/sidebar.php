@@ -134,7 +134,7 @@
                     echo '                    <a href="' . $baseURL . '/reparasi" class="nav-link">';
                     echo '                        <i class="nav-icon fas fa-wrench"></i>';
                     echo '                        <p>';
-                    echo '                            Reparasi';
+                    echo '                            Reparasi <span class="badge badge-warning right">' . $count_reparasi . '</span>';
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
@@ -142,7 +142,7 @@
                     echo '                    <a href="' . $baseURL . '/pemusnahan" class="nav-link">';
                     echo '                        <i class="nav-icon fas fa-fire"></i>';
                     echo '                        <p>';
-                    echo '                            Pemusnahan';
+                    echo '                            Pemusnahan <span class="badge badge-danger right">' . $count_pemusnahan . '</span>';
                     echo '                        </p>';
                     echo '                    </a>';
                     echo '                </li>';
