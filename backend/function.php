@@ -313,6 +313,7 @@ if (isset($_POST['tambahReparasiAset'])) {
 }
 
 /// get data reparasi
+$count_reparasi = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(id_reparasi) as count_REP FROM teknisi;"))['count_REP'];
 $get_data_reparasi = mysqli_query($koneksi, "SELECT teknisi.id_reparasi, teknisi.kode_aset, nama_aset.nama, teknisi.kategori, teknisi.status_reparasi, teknisi.tgl_masuk, teknisi.tgl_keluar
 FROM teknisi
 INNER JOIN nama_aset ON teknisi.nama = nama_aset.id_nama_aset");
@@ -359,6 +360,7 @@ $get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kateg
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
 INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='rusak' ORDER BY aset.kode_aset ASC");
 // get dara pemusnahan
+$count_pemusnahan = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(id_pemusnahan) as count_MUS FROM pemusnah;"))['count_MUS'];
 $get_data_pemusnahan = mysqli_query($koneksi, "SELECT pemusnah.id_pemusnahan, pemusnah.kategori, nama_aset.nama, pemusnah.kode_aset, pemusnah.tgl_pemusnahan, pemusnah.metode
 FROM pemusnah
 INNER JOIN nama_aset ON pemusnah.nama = nama_aset.id_nama_aset");
