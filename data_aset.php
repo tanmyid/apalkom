@@ -152,7 +152,7 @@ include 'layouts/sidebar.php';
                                         <td><?= $kode_aset; ?></td>
                                         <td><?= $kategori; ?></td>
                                         <td><?= $nama; ?></td>
-                                        <td class="text-center"><img src="<?= $gambar; ?>" alt="" height="200rem"></td>
+                                        <td class="text-center"><img src="<?= $gambar; ?>" alt="" width="100rem"></td>
                                         <td><?= $lokasi; ?></td>
                                         <td class="text-center"><?= $tahun_pengadaan; ?></td>
 
