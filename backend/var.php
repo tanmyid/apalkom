@@ -1,6 +1,8 @@
 <?php
+// Laragon Domain = apalkom.dev
 // set baseURL
-$baseURL = 'http://localhost/apalkom';
+// $baseURL = 'http://localhost/apalkom';
+$baseURL = '';
 
 // Koneksi Database
 $koneksi = mysqli_connect('localhost', 'root', '', 'apalkom');
