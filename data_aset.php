@@ -216,10 +216,17 @@ include 'layouts/sidebar.php';
                                                             <span><?= $status; ?></span>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Catatan Aset : </label>
-                                                        <span><?= $catatan; ?></span>
+                                                    <div class="row">
+                                                        <div class="form-group col">
+                                                            <label>Catatan Aset : </label>
+                                                            <span><?= $catatan; ?></span>
+                                                        </div>
+                                                        <div class="form-group col">
+                                                            <label>Gambar : </label>
+                                                            <img src="<?= $gambar; ?>" alt="" width="100rem">
+                                                        </div>
                                                     </div>
+
                                                 </div>
 
                                             </div>
