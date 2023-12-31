@@ -378,7 +378,7 @@ if (isset($_POST['tambahPemusnahan'])) {
     $tgl_pemusnahan = $_POST['tgl_pemusnahan'];
     $metode = $_POST['metode'];
 
-    $cek_duplicate = mysqli_num_rows(mysqli_query($koneksi, "SELECT kode_aset FROM pemusnah WHERE kode_aset='$kode_aset'"));
+    $cek_duplicate = mysqli_fetch_array(mysqli_query($koneksi, "SELECT kode_aset FROM pemusnah WHERE kode_aset='$kode_aset'"));
 
     // $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode) 
     // VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
