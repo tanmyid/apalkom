@@ -207,17 +207,16 @@ if (isset($_POST['hapusLab'])) {
 // end laboratorium function
 
 // aset function
-$count_data_aset = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as count_DA FROM aset;"))['count_DA'];
 /// generate kode aset
-$get_kode = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as KD FROM aset;"))['KD'];
-/// kategori
+$count_data_aset = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as count_DA FROM aset;"))['count_DA'];
 if ($count_data_aset <= 0) {
-    $elektronik = "SMA1NP-AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-E";
-    $non_elektronik = "SMA1NP-AST-" . sprintf("%04d", $get_kode + 1, 3, 3) . "-N";
+    $nomor = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(kode_aset) as KD FROM aset;"))['KD'];
+    $elektronik = "SMA1NP-AST-" . sprintf("%04d", $nomor + 1, 3, 3) . "-E";
+    $non_elektronik = "SMA1NP-AST-" . sprintf("%04d", $nomor + 1, 3, 3) . "-N";
 } else {
-    $nomer = mysqli_fetch_array(mysqli_query($koneksi, "SELECT LPAD(CAST(SUBSTRING(kode_aset, LOCATE('-', kode_aset, LOCATE('-', kode_aset) + 1) + 1, 4) AS UNSIGNED) + 1, 4, '0') AS nomor FROM aset WHERE kode_aset LIKE 'SMA1NP-AST-%' ORDER BY `nomor` DESC LIMIT 1"))['nomor'];
-    $elektronik = "SMA1NP-AST-" . $nomer . "-E";
-    $non_elektronik = "SMA1NP-AST-" . $nomer . "-N";
+    $nomor = mysqli_fetch_array(mysqli_query($koneksi, "SELECT LPAD(CAST(SUBSTRING(kode_aset, LOCATE('-', kode_aset, LOCATE('-', kode_aset) + 1) + 1, 4) AS UNSIGNED) + 1, 4, '0') AS nomor FROM aset WHERE kode_aset LIKE 'SMA1NP-AST-%' ORDER BY `nomor` DESC LIMIT 1"))['nomor'];
+    $elektronik = "SMA1NP-AST-" . $nomor . "-E";
+    $non_elektronik = "SMA1NP-AST-" . $nomor . "-N";
 }
 /// get data aset
 $get_data_aset = mysqli_query(
