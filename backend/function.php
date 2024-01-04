@@ -291,7 +291,8 @@ if (isset($_POST['hapusDataAset'])) {
 $get_data_aset_perbaikan = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset, aset.img
 FROM aset 
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
-INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='perbaikan' ORDER BY aset.kode_aset ASC");
+INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='perbaikan' AND aset.kode_aset 
+NOT IN (SELECT kode_aset FROM teknisi) ORDER BY aset.kode_aset ASC");
 /// tambah aset reparasi
 if (isset($_POST['tambahReparasiAset'])) {
     $kode_aset = $_POST['mySelect'];
@@ -363,7 +364,8 @@ if (isset($_POST['hapusReparasi'])) {
 /// get data aset rusak
 $get_data_aset_rusak = mysqli_query($koneksi, "SELECT aset.kode_aset, aset.kategori, nama_aset.nama, laboratorium.ruangan, aset.status_aset, laboratorium.id_laboratorium AS id_lab, nama_aset.id_nama_aset AS id_namset FROM aset 
 INNER JOIN nama_aset ON aset.nama = nama_aset.id_nama_aset 
-INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium WHERE aset.status_aset='rusak' ORDER BY aset.kode_aset ASC");
+INNER JOIN laboratorium ON aset.laboratorium = laboratorium.id_laboratorium 
+WHERE aset.status_aset='rusak' AND aset.kode_aset NOT IN (SELECT kode_aset FROM pemusnah) ORDER BY aset.kode_aset ASC");
 // get dara pemusnahan
 $count_pemusnahan = mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(id_pemusnahan) as count_MUS FROM pemusnah;"))['count_MUS'];
 $get_data_pemusnahan = mysqli_query($koneksi, "SELECT pemusnah.id_pemusnahan, pemusnah.kategori, nama_aset.nama, pemusnah.kode_aset, pemusnah.tgl_pemusnahan, pemusnah.metode
@@ -385,7 +387,7 @@ if (isset($_POST['tambahPemusnahan'])) {
     if (!is_null($cek_duplicate)) {
         echo '<script>alert("Data Sudah Ada!!!");window.location = "' . $baseURL . '/pemusnahan";</script>';
     } else {
-        $prc = mysqli_query($koneksi,   "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode)  VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
+        $prc = mysqli_query($koneksi, "INSERT INTO pemusnah (id_pemusnahan, kategori, nama , kode_aset, tgl_pemusnahan, metode)  VALUES ('', '$kategori', '$nama', '$kode_aset', '$tgl_pemusnahan', '$metode')");
         if ($prc == TRUE) {
             echo '<script> alert("Data Berhasil di input");window.location = "' . $baseURL . '/pemusnahan";</script>';
         } else {
