@@ -102,7 +102,7 @@
 <!-- End Modal Profile -->
 <aside class="main-sidebar main-sidebar-custom sidebar-dark-success elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= $baseURL; ?>" class="brand-link text-center">
+    <a href="<?= $baseURL; ?>/" class="brand-link text-center">
         <!-- <i class="fas fa-cogs brand-image "> -->
         <img src="<?= $baseURL; ?>/assets/images/logosma.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-bold">APALKOM APP</span>
