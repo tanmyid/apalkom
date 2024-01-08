@@ -106,7 +106,7 @@ if ($_SESSION['level'] !== 'kalab') {
                                                 echo 'Kepala Laboratorium';
                                             } else echo 'Laboran'; ?></td>
                                         <td class="text-center">
-                                            <?php if ($level == 'kalab' && $_SESSION['username'] == $username) { ?>
+                                            <?php if ($_SESSION['username'] == $username) { ?>
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_pengguna; ?>"><i class="fas fa-edit"></i> Edit</button>
                                             <?php } else { ?>
                                                 <button class="btn btn-warning" data-toggle="modal" data-target="#editUser<?= $id_pengguna; ?>"><i class="fas fa-edit"></i> Edit</button>
