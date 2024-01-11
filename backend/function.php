@@ -157,13 +157,13 @@ if (isset($_POST['hapusNamaAset'])) {
 /// get data laboran from user
 $get_data_laboran = mysqli_query($koneksi, "SELECT id_pengguna,nama FROM pengguna WHERE level='laboran'");
 /// get data laboratorium
-$get_data_laboratorium = mysqli_query($koneksi, "SELECT laboratorium.id_laboratorium AS id_lab, laboratorium.ruangan AS ruangan, pengguna.nama AS laboran FROM laboratorium INNER JOIN pengguna ON laboratorium.laboran = pengguna.id_pengguna");
+$get_data_laboratorium = mysqli_query($koneksi, "SELECT laboratorium.id_laboratorium AS id_lab, laboratorium.ruangan AS ruangan, pengguna.nama AS laboran, laboratorium.kapasitas FROM laboratorium INNER JOIN pengguna ON laboratorium.laboran = pengguna.id_pengguna");
 /// tambah data laboratorium
 if (isset($_POST['tambahLab'])) {
     $ruangan = 'Lab ' . $_POST['ruangan'];
     $laboran = $_POST['laboran'];
-
-    $prc = mysqli_query($koneksi, "INSERT INTO laboratorium (id_laboratorium, ruangan, laboran) VALUES ('', '$ruangan', '$laboran')");
+    $kapasitas = $_POST['kapasitas'];
+    $prc = mysqli_query($koneksi, "INSERT INTO laboratorium (id_laboratorium, ruangan, kapasitas, laboran) VALUES ('', '$ruangan', '$kapasitas', '$laboran')");
 
     echo '<script>';
     if ($prc == TRUE) {
@@ -178,8 +178,9 @@ if (isset($_POST['editLab'])) {
     $id_laboratorium = $_POST['id_laboratorium'];
     $ruangan = 'Lab ' . $_POST['ruangan'];
     $laboran = $_POST['laboran'];
+    $kapasitas = $_POST['kapasitas'];
 
-    $prc = mysqli_query($koneksi, "UPDATE laboratorium SET ruangan='$ruangan',laboran='$laboran' WHERE id_laboratorium='$id_laboratorium'");
+    $prc = mysqli_query($koneksi, "UPDATE laboratorium SET ruangan='$ruangan', laboran='$laboran', kapasitas='$kapasitas' WHERE id_laboratorium='$id_laboratorium'");
 
     echo '<script>';
     if ($prc == TRUE) {

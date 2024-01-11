@@ -41,6 +41,10 @@ include 'layouts/sidebar.php';
                                                 <input type="number" class="form-control" placeholder="Masukkan no ruangan ..." name="ruangan">
                                             </div>
                                             <div class="form-group">
+                                                <label>Kapasitas Ruangan</label>
+                                                <input type="number" class="form-control" placeholder="Masukkan kapasitas ..." name="kapasitas">
+                                            </div>
+                                            <div class="form-group">
                                                 <label>Laboran</label>
                                                 <select class="form-control" name="laboran">
                                                     <option selected>Pilih laboran</option>
@@ -67,6 +71,8 @@ include 'layouts/sidebar.php';
                             <thead class="text-center">
                                 <th>No</th>
                                 <th>Ruangan</th>
+                                <th>Kapasitas</th>
+                                <th>Sisa Kapasitas</th>
                                 <th>Laboran</th>
                                 <th>Opsi</th>
                             </thead>
@@ -76,13 +82,17 @@ include 'layouts/sidebar.php';
                                 while ($data = mysqli_fetch_array($get_data_laboratorium)) :
                                     $id_laboratorium = $data['id_lab'];
                                     $ruangan = $data['ruangan'];
+                                    $kapasitas = $data['kapasitas'];
                                     $laboran = $data['laboran'];
+                                    $sisa = $kapasitas - mysqli_fetch_array(mysqli_query($koneksi, "SELECT COUNT(laboratorium) AS tot_aset_lab FROM aset WHERE laboratorium = '$id_laboratorium'"))['tot_aset_lab'];
                                 ?>
-                                    <tr>
-                                        <td class="text-center"><?= $no++; ?></td>
-                                        <td class="text-center"><?= $ruangan; ?></td>
-                                        <td class="text-center"><?= $laboran; ?></td>
-                                        <td class=" text-center">
+                                    <tr class="text-center">
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $ruangan; ?></td>
+                                        <td><?= $kapasitas; ?></td>
+                                        <td><?= $sisa ?></td>
+                                        <td><?= $laboran; ?></td>
+                                        <td>
                                             <button class="btn btn-info" data-toggle="modal" data-target="#editLab<?= $id_laboratorium; ?>"><i class="fas fa-edit"></i> Edit</button>
                                             <button class="btn btn-danger" data-toggle="modal" data-target="#hapusLab<?= $id_laboratorium; ?>"><i class="fas fa-trash"></i> Hapus</button>
                                         </td>
@@ -105,16 +115,19 @@ include 'layouts/sidebar.php';
                                                             <input type="number" class="form-control" value="<?= filter_var($ruangan, FILTER_SANITIZE_NUMBER_INT); ?>" placeholder="<?= $ruangan; ?>" name="ruangan">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label>Laboran</label>
+                                                            <label>Ganti Laboran</label>
                                                             <select class="form-control" name="laboran">
-                                                                <option selected>Ganti laboran</option>
                                                                 <?php
                                                                 mysqli_data_seek($get_data_laboran, 0);
                                                                 while ($laboran = mysqli_fetch_array($get_data_laboran)) :
                                                                 ?>
-                                                                    <option value="<?= $laboran['id_pengguna']; ?>"><?= $laboran['nama']; ?></option>
+                                                                    <option selected value="<?= $laboran['id_pengguna']; ?>"><?= $laboran['nama']; ?></option>
                                                                 <?php endwhile ?>
                                                             </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Kapasitas</label>
+                                                            <input type="text" class="form-control" value="<?= $kapasitas; ?>" name="kapasitas">
                                                         </div>
                                                 </div>
                                                 <div class="modal-footer justify-content-between">
